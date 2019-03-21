@@ -45,15 +45,16 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button2"
+
+                android:id="@+id/btnOverview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/add_expense"
-
+                android:layout_weight="1"
+                android:text="@string/overview"
                 />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnBudget"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -65,19 +66,20 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/overview" />
 
-            <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnDetail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
                 android:layout_weight="1"
                 android:text="@string/spending_detail" />
+
+            <Button
+                android:id="@+id/btnExpense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/add_expense"
+                android:layout_marginLeft="40dp"
+                />
         </TableRow>
 
     </TableLayout>
