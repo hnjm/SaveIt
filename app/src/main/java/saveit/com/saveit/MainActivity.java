@@ -18,7 +18,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private PieChart chart;
-    private float ftSize = 22f;
+    private float fontSize = 18f;
+    private String[] category = {"Clothing", "Food", "Housing", "Medical", "Transport", "Other"};   // setting categories
+    private List<PieEntry> pieVal = new ArrayList<>();  // to store data pie entries
+    private PieDataSet pieDataSet;  // to send data to the pie chart
+    private int[] color = {Color.RED, Color.BLUE, Color.DKGRAY, Color.LTGRAY, Color.MAGENTA, Color.BLACK};     // making an int[] for the colors
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //chart.setCenterText("Summary"); // set text in the middle of the chart
         //chart.setCenterTextSize(ftSize); // set size of center text
         chart.invalidate();     // refresh
+        setContentView(R.layout.overview);
 
     }
 
