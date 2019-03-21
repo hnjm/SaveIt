@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         int[] color = {Color.RED, Color.BLUE, Color.DKGRAY};     // making an int[] for the colors
         pieDataSet.setColors(color);    // setting colors for the pie chart
         PieData pieData = new PieData(pieDataSet);
-        pieData.setValueTextSize(ftSize);   // set % value font size
+        pieData.setValueTextSize(24);   // set % value font size
         pieData.setValueTextColor(Color.WHITE); // set value font color
         pieDataSet.setValueFormatter(new PercentFormatter());   // use % formatting
         chart.setData(pieData); // set data to pie chart
         chart.setUsePercentValues(true);    // use %
-        chart.setEntryLabelTextSize(ftSize); // set pie chart description font size
+        chart.setEntryLabelTextSize(24); // set pie chart description font size
         chart.getDescription().setEnabled(false);   // remove description next to chart
         chart.getLegend().setEnabled(false);        // remove legend
         chart.setHoleRadius(30f);   // radius of the empty space in the middle of the chart
