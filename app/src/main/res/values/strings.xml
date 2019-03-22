@@ -4,4 +4,15 @@
     <string name="add_expense">Add Expense</string>
     <string name="overview">Overview</string>
     <string name="spending_detail">Spending Detail</string>
+    <string-array name="array_category">
+
+        <item>...</item>
+        <item>Clothing</item>
+        <item>Food</item>
+        <item>Housing</item>
+        <item>Medical</item>
+        <item>Transport</item>
+        <item>Other</item>
+
+    </string-array>
 </resources>

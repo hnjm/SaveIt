@@ -5,8 +5,10 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FFD8B3</color>
     <color name="colorAccentLight">#FEB264</color>
-    <color name="lightBlue">#00BCD4</color>
+    <color name="lightBlue">#B6F4FF</color>
+    <color name="blue">#5DE7FF</color>
     <color name="white">#FFFFFF</color>
     <color name="pink">#FA8EBE</color>
     <color name="darkPink">#FF7795</color>
+    <color name="black">#000000</color>
 </resources>

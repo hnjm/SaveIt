@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.40"
-                android:background="@color/colorAccent"
+                android:background="@color/lightBlue"
                 android:clickable="false"
                 android:text="Category"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -44,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.40"
-                android:background="@color/colorAccentLight"
+                android:background="@color/blue"
                 android:clickable="false"
                 android:text="Amount"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -54,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
-                android:background="@color/colorAccent"
+                android:background="@color/lightBlue"
                 android:clickable="false"
                 android:text="%"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
