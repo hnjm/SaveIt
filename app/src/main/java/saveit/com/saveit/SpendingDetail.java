@@ -15,7 +15,6 @@ public class SpendingDetail extends Activity {
 
     private Spinner spinner;
     private LinearLayout display;
-    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class SpendingDetail extends Activity {
 
         spinner = findViewById(R.id.category_spinner);
         display = findViewById(R.id.record_view);
-        btnBack = findViewById(R.id.btnBackSpending);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

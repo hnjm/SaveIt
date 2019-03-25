@@ -6,7 +6,7 @@
     <string name="spending_detail">Spending Detail</string>
     <string-array name="array_category">
 
-        <item>...</item>
+        <item>Category</item>
         <item>Clothing</item>
         <item>Food</item>
         <item>Housing</item>

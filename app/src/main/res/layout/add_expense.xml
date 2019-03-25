@@ -1,86 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/submit_addExpense"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="start"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="Location"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        tools:text="Where did you spend money?" />
 
     <EditText
-        android:id="@+id/textLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/expenseTitle"
+        android:layout_width="379dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/colorAccent"
         android:ems="10"
-        android:hint="Store, Website ...etc"
+        android:hint="Enter Expense Title"
         android:inputType="text"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="313dp"
-        android:layout_height="46dp"
-        android:text="Item Purchased"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp" />
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/expenseCost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/expenseCost"
+        android:layout_width="379dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/colorPrimaryLight"
         android:ems="10"
-        android:hint="Headphones, Candles ..etc"
-        android:inputType="text"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quantity of Items"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/textQuantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="#"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cost per Item"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/textCost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="$_._"
+        android:hint="Enter Amount Spent"
         android:inputType="numberDecimal"
-        android:textSize="24sp" />
+        app:layout_constraintBottom_toTopOf="@+id/expense_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseTitle" />
+
+    <Spinner
+        android:id="@+id/expense_category"
+        android:layout_width="379dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="80dp"
+        android:background="@color/colorAccent"
+        android:dropDownWidth="wrap_content"
+        android:entries="@array/array_category"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/expenseSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseCost" />
 
     <Button
-        android:id="@+id/submitNewExpense"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="179dp"
+        android:id="@+id/expenseSubmit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginLeft="161dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:layout_marginBottom="224dp"
         android:onClick="submitNewExpense"
-        android:text="Submit Expense" />
-</LinearLayout>
+        android:text="Submit Expense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_category" />
+
+</android.support.constraint.ConstraintLayout>
