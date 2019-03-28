@@ -2,6 +2,7 @@ package saveit.com.saveit;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.text.SimpleDateFormat;
 
 /**
 Refer to tutorials for help:
@@ -27,14 +30,23 @@ https://firebase.google.com/docs/firestore/quickstart#add_data
 public class AddExpense extends Activity {
 
     // Reference all inputs in form from xml
-    private EditText textTitle, textCost;
+    private EditText textItem, textLocation, textCost;
     private Spinner spinCat;
 
     // Keys for map below
-    private static final String KEY_TITLE = "Title";
+    private static final String KEY_ITEM = "Item";
+    private static final String KEY_LOCATION = "Location";
     private static final String KEY_COST = "Amount";
-    private static final String KEY_CAT = "Category";
-    private static String date = Calendar.getInstance().getTime().toString();
+    private static final String KEY_DATE = "Date";
+
+    // Remove
+    private static final String KEY_CATEGORY = "Category";
+
+    // Get current date to put into database
+    static Calendar calendar = Calendar.getInstance();
+    // Format = Day, Month, Year, hours:minutes seconds
+    static SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy h:mm a");
+    private static String date = format.format(calendar.getTime());
 
     // Access a Cloud Firestore instance from your Activity
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -46,16 +58,24 @@ public class AddExpense extends Activity {
         setContentView(R.layout.add_expense);
 
         // Reference all inputs in form from xml
-        textTitle = (EditText) findViewById(R.id.expenseTitle);
+        textItem = (EditText) findViewById(R.id.expenseItem);
+        textLocation = (EditText) findViewById(R.id.expenseLocation);
         textCost = (EditText) findViewById(R.id.expenseCost);
         spinCat = (Spinner) findViewById(R.id.expense_category);
     }
 
     public void submitNewExpense(View v){
-        // check title
-        String title = textTitle.getText().toString();
-        if(title.trim().equals("")){
-            Toast.makeText(AddExpense.this, "Please enter a valid title", Toast.LENGTH_SHORT).show();
+        // check item
+        String item = textItem.getText().toString();
+        if(item.trim().equals("")){
+            Toast.makeText(AddExpense.this, "Please enter a valid item", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // check location
+        String location = textLocation.getText().toString();
+        if(item.trim().equals("")){
+            Toast.makeText(AddExpense.this, "Please enter a valid location", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -75,13 +95,13 @@ public class AddExpense extends Activity {
 
         // Save value in a "container" to send over to FirebaseFirestore database
         Map<String, Object> record = new HashMap<>();
-        record.put(KEY_TITLE, title);
+        record.put(KEY_ITEM, item);
+        record.put(KEY_LOCATION, location);
         record.put(KEY_COST, cost);
-        record.put(KEY_CAT, category);
-
+        record.put(KEY_DATE, date);
 
         // Reference to collection to store all of the values above
-        db.collection(date)
+        db.collection(category)
                 .add(record)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

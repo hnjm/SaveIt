@@ -35,13 +35,15 @@ public class SpendingDetail extends Activity {
 
                     // retrieve entries of given category from database
                     // Example data
-                    String[] title = {"Gas", "Subway", "Bus"};
+                    String[] items = {"T-pass", "Black T-shirt", "Rice"};
+                    String[] locations = {"MBTA", "H&M", "C Mart"};
                     String[] date = {"3/22", "3/21", "3/3"};
-                    double[] amount = {20.0, 2.25, 1.75};
+                    double[] amount = {20.0, 2.25, 13.45};
 
                     // display data by adding TextView to LinearLayout
-                    for (int j = 0; j < title.length; j++) {
-                        String temp = title[j] + "\n";
+                    for (int j = 0; j < items.length; j++) {
+                        String temp = items[j] + "\n";
+                        temp += locations[j] + "\n";
                         temp += date[j] + "\n";
                         temp += "$" + amount[j] + "\n";
 
