@@ -4,7 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Overview extends Activity {
 
@@ -13,13 +21,21 @@ public class Overview extends Activity {
     private double[] percent = new double[cat];
     private DecimalFormat df = new DecimalFormat("#.##");
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference clothRef = db.collection("Clothing");
+    private CollectionReference foodRef = db.collection("Food");
+    private CollectionReference houseRef = db.collection("Housing");
+    private CollectionReference medRef = db.collection("Medical");
+    private CollectionReference transportRef = db.collection("Transport");
+    private CollectionReference otherRef = db.collection("Other");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Reference to xml file
         setContentView(R.layout.overview);
-
-        Button[] btnAmt = { (Button)findViewById(R.id.clothingAmt), (Button)findViewById(R.id.foodAmt),
+        final Button btnSum = (Button)findViewById(R.id.totalAmt);
+        final Button[] btnAmt = { (Button)findViewById(R.id.clothingAmt), (Button)findViewById(R.id.foodAmt),
                 (Button)findViewById(R.id.housingAmt), (Button)findViewById(R.id.medicalAmt),
                 (Button)findViewById(R.id.transportAmt), (Button)findViewById(R.id.otherAmt)};
 
@@ -31,18 +47,114 @@ public class Overview extends Activity {
         // set amount and percent text
         // mock data
 
-        double total = 0; // to calculate percentage
-        for(int i = 0; i < cat; i++){
-            amount[i] = Math.random() * 1000;
-            total += amount[i];
+        clothRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
 
-            btnAmt[i].setText("" + df.format(amount[i]));
-        }
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[0].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
 
-        for(int i = 0; i< cat; i++){
-            percent[i] = amount[i] / total * 100;
-            btnPerc[i].setText("" + df.format(percent[i]));
-        }
+        foodRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[1].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
+
+        houseRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[2].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
+
+        medRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[3].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
+
+        transportRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[4].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
+
+        otherRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        double temp = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            temp += (double) record.get("Amount");
+                        }
+                        btnAmt[5].setText("" + df.format(temp));
+                        double sum = 0;
+                        sum = Double.parseDouble(btnSum.getText().toString());
+                        sum+=temp;
+                        btnSum.setText("" + df.format(sum));
+                    }
+                });
     }
 
 }

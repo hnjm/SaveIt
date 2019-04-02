@@ -81,7 +81,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorAccent"
                 android:clickable="false"
-                android:text="100"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -91,7 +91,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorAccentLight"
                 android:clickable="false"
-                android:text="11.7"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -116,7 +116,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorAccentLight"
                 android:clickable="false"
-                android:text="200"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -126,7 +126,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorAccent"
                 android:clickable="false"
-                android:text="23.5"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -151,7 +151,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorAccent"
                 android:clickable="false"
-                android:text="500"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -161,7 +161,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorAccentLight"
                 android:clickable="false"
-                android:text="58.8"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -221,7 +221,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorAccent"
                 android:clickable="false"
-                android:text="30"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -231,7 +231,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorAccentLight"
                 android:clickable="false"
-                android:text="3.5"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -256,7 +256,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorAccentLight"
                 android:clickable="false"
-                android:text="20"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -266,7 +266,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorAccent"
                 android:clickable="false"
-                android:text="2.3"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -304,7 +304,7 @@
                 android:layout_weight="0.6"
                 android:background="@color/darkPink"
                 android:clickable="false"
-                android:text="850"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
@@ -342,7 +342,7 @@
                 android:layout_weight="0.6"
                 android:background="@color/colorPrimary"
                 android:clickable="false"
-                android:text="150"
+                android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
