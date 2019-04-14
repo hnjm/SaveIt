@@ -5,16 +5,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +29,17 @@ public class MainActivity extends AppCompatActivity {
     private String[] category = {"Clothing", "Food", "Housing", "Medical", "Transport", "Other"};   // setting categories
     private List<PieEntry> pieVal = new ArrayList<>();  // to store data pie entries
     private PieDataSet pieDataSet;  // to send data to the pie chart
-    private int[] color = {Color.RED, Color.BLUE, Color.DKGRAY, Color.LTGRAY, Color.MAGENTA, Color.BLACK};     // making an int[] for the colors
+    private int[] color = {Color.RED, Color.BLUE, Color.DKGRAY, Color.LTGRAY, Color.MAGENTA, Color.BLACK, Color.CYAN};     // making an int[] for the colors
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference clothRef = db.collection("Clothing");
+    private CollectionReference foodRef = db.collection("Food");
+    private CollectionReference houseRef = db.collection("Housing");
+    private CollectionReference medRef = db.collection("Medical");
+    private CollectionReference transportRef = db.collection("Transport");
+    private CollectionReference otherRef = db.collection("Other");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -34,12 +47,107 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of using pie chart from MPAndroidChart
         // make a list of values in the chart and labels
-        pieVal.add(new PieEntry(2f, category[0]));  // value, label
-        pieVal.add(new PieEntry(2f, category[1]));
-        pieVal.add(new PieEntry(3f, category[2]));
-        pieVal.add(new PieEntry(4f, category[3]));
-        pieVal.add(new PieEntry(3f, category[4]));
-        pieVal.add(new PieEntry(2f, category[5]));
+        clothRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[0]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
+
+        foodRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[1]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
+
+        houseRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[2]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
+
+        medRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[3]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
+
+        transportRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[4]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
+
+        otherRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Map<String, Object> record = new HashMap<>();
+                        float amt = 0;
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            record = documentSnapshot.getData();
+                            amt += Float.valueOf(String.valueOf(record.get("Amount")));
+                        }
+                        pieDataSet.addEntry(new PieEntry(amt, category[5]));
+                        PieData pieData = new PieData(pieDataSet);
+                        chart.setData(pieData);
+                        chart.invalidate();     // refresh
+                    }
+                });
 
         pieDataSet = new PieDataSet(pieVal, "Summary");  // set data and name to pieDataSet
 
@@ -54,13 +162,10 @@ public class MainActivity extends AppCompatActivity {
         chart.setUsePercentValues(true);            // use %
         chart.setEntryLabelTextSize(fontSize);      // set pie chart description font size
         chart.getDescription().setEnabled(false);   // remove description next to chart
-        chart.getLegend().setEnabled(false);        // remove legend
-        chart.setHoleRadius(30f);                   // radius of the empty space in the middle of the chart
+        chart.getLegend().setEnabled(true);         // remove legend
+        chart.setHoleRadius(20f);                   // radius of the empty space in the middle of the chart
         chart.setTransparentCircleAlpha(0);         // makes center circle transparent
-        //chart.setCenterText("Summary");           // set text in the middle of the chart
-        //chart.setCenterTextSize(ftSize);          // set size of center text
-
-        chart.setTouchEnabled(false); // prevent clicking
+        chart.setTouchEnabled(false);               // prevents click
 
         chart.invalidate();     // refresh
 
