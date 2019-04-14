@@ -39,184 +39,9 @@ public class SpendingDetail extends Activity {
     private CollectionReference transportRef = db.collection("Transport");
     private CollectionReference otherRef = db.collection("Other");
 
-    // Data to populate page
-    private HashMap<String, HashMap> allData = new HashMap<String, HashMap>();
-    private HashMap<String, ArrayList> clothData = new HashMap<String, ArrayList>();
-    private HashMap<String, ArrayList> foodData = new HashMap<String, ArrayList>();
-    private HashMap<String, ArrayList> houseData = new HashMap<String, ArrayList>();
-    private HashMap<String, ArrayList> medData = new HashMap<String, ArrayList>();
-    private HashMap<String, ArrayList> transportData = new HashMap<String, ArrayList>();
-    private HashMap<String, ArrayList> otherData = new HashMap<String, ArrayList>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        // Load data beforehand and populate when prompted
-//        clothRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        // Get all items, locations, dates, and amounts per each document in col.
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//                        // Add them to corresponding HashMap
-//                        clothData.put("items", items);
-//                        clothData.put("locations", locations);
-//                        clothData.put("dates", dates);
-//                        clothData.put("amounts", amounts);
-//                        allData.put("Clothing", clothData);
-//
-//                    }
-//                });
-//
-//        foodRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//                        // Add them to corresponding HashMap
-//                        foodData.put("items", items);
-//                        foodData.put("locations", locations);
-//                        foodData.put("dates", dates);
-//                        foodData.put("amounts", amounts);
-//                        allData.put("Food", foodData);
-//                    }
-//                });
-//
-//        houseRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//
-//                        // Add them to corresponding HashMap
-//                        houseData.put("items", items);
-//                        houseData.put("locations", locations);
-//                        houseData.put("dates", dates);
-//                        houseData.put("amounts", amounts);
-//                        allData.put("Housing", houseData);
-//                    }
-//                });
-//
-//        medRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//                        medData.put("items", items);
-//                        medData.put("locations", locations);
-//                        medData.put("dates", dates);
-//                        medData.put("amounts", amounts);
-//                        allData.put("Medical", medData);
-//                    }
-//                });
-//
-//        transportRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//                        transportData.put("items", items);
-//                        transportData.put("locations", locations);
-//                        transportData.put("dates", dates);
-//                        transportData.put("amounts", amounts);
-//                        allData.put("Transport", transportData);
-//                    }
-//                });
-//
-//        otherRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Map<String, Object> record = new HashMap<>();
-//
-//                        ArrayList<String> items = new ArrayList<String>();
-//                        ArrayList<String> locations = new ArrayList<String>();
-//                        ArrayList<String> dates = new ArrayList<String>();
-//                        ArrayList<Double> amounts = new ArrayList<Double>();
-//
-//                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            record = documentSnapshot.getData();
-//                            items.add((String) record.get("Item"));
-//                            locations.add((String) record.get("Location"));
-//                            dates.add((String) record.get("Date"));
-//                            amounts.add((Double) record.get("Amount"));
-//                        }
-//                        otherData.put("items", items);
-//                        otherData.put("locations", locations);
-//                        otherData.put("dates", dates);
-//                        otherData.put("amounts", amounts);
-//                        allData.put("Other", otherData);
-//                    }
-//                });
-
-
-
-
 
         // Reference to xml file
         setContentView(R.layout.spending_detail);
@@ -233,24 +58,194 @@ public class SpendingDetail extends Activity {
                     String category = spinner.getSelectedItem().toString(); // get category
 
                     // Loop through all documents within list with whereEqualTo
+                    switch(category){
+                        case "Clothing":
+                            clothRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
 
-                    // display data by adding TextView to LinearLayout
-                    for (int j = 0; j < allData.get(category).get("items").size(); j++) {
-                        String temp = items.get(j) + "\n";
-                        temp += locations.get(j) + "\n";
-                        temp += date.get(j) + "\n";
-                        temp += "$" + amount.get(j) + "\n";
+                                                TextView text = createNewTextView(temp);
 
-                        TextView text = createNewTextView(temp);
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
 
-                        if(j % 2 == 0){
-                            text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
-                        }
-                        else{
-                            text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
-                        }
-                        display.addView(text);
+                                        }
+                                    });
+                            break;
+
+                        case "Food":
+                            foodRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
+
+                                                TextView text = createNewTextView(temp);
+
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
+
+                                        }
+                                    });
+                            break;
+
+                        case "Housing":
+                            houseRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
+
+                                                TextView text = createNewTextView(temp);
+
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
+
+                                        }
+                                    });
+                            break;
+
+                        case "Medical":
+                            medRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
+
+                                                TextView text = createNewTextView(temp);
+
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
+
+                                        }
+                                    });
+                            break;
+
+                        case "Transport":
+                            transportRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
+
+                                                TextView text = createNewTextView(temp);
+
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
+
+                                        }
+                                    });
+                            break;
+
+                        case "Other":
+                            otherRef.get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            Map<String, Object> record = new HashMap<>();
+                                            int color = 0;
+                                            for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                                record = documentSnapshot.getData();
+                                                // display data by adding TextView to LinearLayout
+                                                String temp = record.get("Item") + "\n";
+                                                temp += record.get("Location") + "\n";
+                                                temp += record.get("Date") + "\n";
+                                                temp += "$" + record.get("Amount") + "\n";
+
+                                                TextView text = createNewTextView(temp);
+
+                                                if(color % 2 == 0){
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                                                }
+                                                else{
+                                                    text.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryLight));
+                                                }
+                                                display.addView(text);
+                                                color++;
+                                            }
+
+                                        }
+                                    });
+                            break;
                     }
+
 
                 }
                 else{
