@@ -15,10 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Overview extends Activity {
-
-    private int cat = 6;        // 6 categories: Clothing, Food, Housing, Medical, Transport, Other
-    private double[] amount = new double[cat];
-    private double[] percent = new double[cat];
     private DecimalFormat df = new DecimalFormat("#.##");
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -28,6 +24,7 @@ public class Overview extends Activity {
     private CollectionReference medRef = db.collection("Medical");
     private CollectionReference transportRef = db.collection("Transport");
     private CollectionReference otherRef = db.collection("Other");
+    private CollectionReference totalsRef = db.collection("Totals");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,33 +36,81 @@ public class Overview extends Activity {
                 (Button)findViewById(R.id.housingAmt), (Button)findViewById(R.id.medicalAmt),
                 (Button)findViewById(R.id.transportAmt), (Button)findViewById(R.id.otherAmt)};
 
-        Button[] btnPerc = { (Button)findViewById(R.id.clothingPerc), (Button)findViewById(R.id.foodPerc),
+        final Button[] btnPerc = { (Button)findViewById(R.id.clothingPerc), (Button)findViewById(R.id.foodPerc),
                 (Button)findViewById(R.id.housingPerc), (Button)findViewById(R.id.medicalPerc),
                 (Button)findViewById(R.id.transportPerc), (Button)findViewById(R.id.otherPerc)};
 
-        // get data for amount and percent
-        // set amount and percent text
-        // mock data
+        final Button btnRemain = (Button)findViewById(R.id.remainAmt);
+        final Button btnTotal = (Button)findViewById(R.id.totalAllocated);
 
+        // get data for amounts
+        // set amount and left text
+        //following code is repeated for every category...
         clothRef.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    //once connected do the following...
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Map<String, Object> record = new HashMap<>();
                         double temp = 0;
 
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            //holds data grabbed from database
                             record = documentSnapshot.getData();
+                            //adds cost of each entry
                             temp += (double) record.get("Amount");
                         }
+                        //sets area corresponding to category to total amount spent
                         btnAmt[0].setText("" + df.format(temp));
+                        //sum
                         double sum = 0;
+                        //grab number in sum field
                         sum = Double.parseDouble(btnSum.getText().toString());
+                        //adds cost of category to whatever was in the spent field
                         sum+=temp;
+                        //set sum to spent field
                         btnSum.setText("" + df.format(sum));
+
+                        //update remaining, $ left, and total
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                //how much money spent
+                                used = Double.parseDouble(btnAmt[0].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    //get budgeted amount from database
+                                    total = Long.valueOf(record.get("Clothing").toString()).doubleValue();
+                                    //get total field
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    //add total of categories together
+                                    update += total;
+                                    //set total field
+                                    btnTotal.setText("" + df.format(update));
+
+                                    //category budget - how much was spent
+                                    total -= used;
+
+                                    //set remaining of category budget
+                                    btnPerc[0].setText("" + df.format(total));
+
+                                    //get total remain field
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    //add remainder of category budget to field
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
 
+        //all the following are repeats of above except for corresponding category
         foodRef.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -81,6 +126,33 @@ public class Overview extends Activity {
                         sum = Double.parseDouble(btnSum.getText().toString());
                         sum+=temp;
                         btnSum.setText("" + df.format(sum));
+
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                used = Double.parseDouble(btnAmt[1].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    total = Long.valueOf(record.get("Food").toString()).doubleValue();
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    update += total;
+                                    btnTotal.setText("" + df.format(update));
+
+                                    total -= used;
+
+                                    btnPerc[1].setText("" + df.format(total));
+
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -99,6 +171,33 @@ public class Overview extends Activity {
                         sum = Double.parseDouble(btnSum.getText().toString());
                         sum+=temp;
                         btnSum.setText("" + df.format(sum));
+
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                used = Double.parseDouble(btnAmt[2].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    total = Long.valueOf(record.get("Housing").toString()).doubleValue();
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    update += total;
+                                    btnTotal.setText("" + df.format(update));
+
+                                    total -= used;
+
+                                    btnPerc[2].setText("" + df.format(total));
+
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -117,6 +216,33 @@ public class Overview extends Activity {
                         sum = Double.parseDouble(btnSum.getText().toString());
                         sum+=temp;
                         btnSum.setText("" + df.format(sum));
+
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                used = Double.parseDouble(btnAmt[3].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    total = Long.valueOf(record.get("Medical").toString()).doubleValue();
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    update += total;
+                                    btnTotal.setText("" + df.format(update));
+
+                                    total -= used;
+
+                                    btnPerc[3].setText("" + df.format(total));
+
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -135,6 +261,33 @@ public class Overview extends Activity {
                         sum = Double.parseDouble(btnSum.getText().toString());
                         sum+=temp;
                         btnSum.setText("" + df.format(sum));
+
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                used = Double.parseDouble(btnAmt[4].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    total = Long.valueOf(record.get("Transportation").toString()).doubleValue();
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    update += total;
+                                    btnTotal.setText("" + df.format(update));
+
+                                    total -= used;
+
+                                    btnPerc[4].setText("" + df.format(total));
+
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -153,6 +306,33 @@ public class Overview extends Activity {
                         sum = Double.parseDouble(btnSum.getText().toString());
                         sum+=temp;
                         btnSum.setText("" + df.format(sum));
+
+                        totalsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Map<String, Object> record = new HashMap<>();
+                                double used = 0;
+                                used = Double.parseDouble(btnAmt[5].getText().toString());
+                                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    record = documentSnapshot.getData();
+                                    double total = 0;
+                                    double update = 0;
+
+                                    total = Long.valueOf(record.get("Other").toString()).doubleValue();
+                                    update = Double.parseDouble(btnTotal.getText().toString());
+                                    update += total;
+                                    btnTotal.setText("" + df.format(update));
+
+                                    total -= used;
+
+                                    btnPerc[5].setText("" + df.format(total));
+
+                                    update = Double.parseDouble(btnRemain.getText().toString());
+                                    update += total;
+                                    btnRemain.setText("" + df.format(update));
+                                }
+                            }
+                        });
                     }
                 });
     }

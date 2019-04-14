@@ -58,7 +58,7 @@
                 android:layout_weight="0.20"
                 android:background="@color/colorPrimaryLight"
                 android:clickable="false"
-                android:text="%"
+                android:text="$ Left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
