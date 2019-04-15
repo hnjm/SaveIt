@@ -32,7 +32,7 @@ public class EditTotals extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference totalsRef = db.collection("Totals");
     // Get category chosen
-    private Spinner spinner = findViewById(R.id.totalsCategorySelect);
+    private Spinner spinner;
     // Populate these texts
     private TextView categorySelected;
     private EditText amountAllocate;
@@ -42,7 +42,7 @@ public class EditTotals extends Activity {
         super.onCreate(savedInstanceState);
         // Reference to xml file
         setContentView(R.layout.edit_totals);
-
+        spinner =  findViewById(R.id.totalsCategorySelect);
         // Reference all inputs in form from xml
         categorySelected = (TextView) findViewById(R.id.totalsCategory);
         amountAllocate = (EditText) findViewById(R.id.amountToAllocate);

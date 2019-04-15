@@ -275,7 +275,7 @@ public class Overview extends Activity {
                                     double total = 0;
                                     double update = 0;
 
-                                    total = Long.valueOf(record.get("Transportation").toString()).doubleValue();
+                                    total = Long.valueOf(record.get("Transport").toString()).doubleValue();
                                     update = Double.parseDouble(btnTotal.getText().toString());
                                     update += total;
                                     btnTotal.setText("" + df.format(update));
