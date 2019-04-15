@@ -81,7 +81,19 @@ public class EditTotals extends Activity {
 
     public void submitNewAmount(View v){
         final String category = spinner.getSelectedItem().toString();
-        totRef.update(category, df.format(Double.parseDouble(amountAllocate.getText().toString())));
+        totRef.update(category, df.format(Double.parseDouble(amountAllocate.getText().toString())))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(EditTotals.this, "Record Updated", Toast.LENGTH_SHORT).show();
+                        }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(EditTotals.this, "Error with updating record", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
 
