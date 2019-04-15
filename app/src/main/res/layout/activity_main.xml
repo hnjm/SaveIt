@@ -71,6 +71,7 @@
                 android:id="@+id/btnEditEntries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="goToEditAmounts"
                 android:text="@string/change_budget" />
 
             <Button

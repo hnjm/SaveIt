@@ -338,11 +338,4 @@ public class Overview extends Activity {
                     }
                 });
     }
-
-    public void goToEditAmounts(View view){
-        // Add Intent to open another activity (Add Expense)
-        Intent editTotals = new Intent(this, EditTotals.class);
-        startActivity(editTotals);
-    }
-
 }

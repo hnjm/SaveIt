@@ -14,6 +14,6 @@
         <item>Other</item>
 
     </string-array>
-    <string name="change_budget">Edit Entry</string>
+    <string name="change_budget">Edit Budget</string>
     <string name="title_activity_edit_entry">EditEntry</string>
 </resources>

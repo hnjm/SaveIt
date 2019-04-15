@@ -36,7 +36,7 @@ public class EditTotals extends Activity {
     // Populate these texts
     private TextView categorySelected;
     private EditText amountAllocate;
-
+    private DocumentReference totRef = db.collection("Totals").document("c5jQlqKkMYTxxJpdJKVS");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,6 @@ public class EditTotals extends Activity {
                             }
                         }
                     });
-
                 }
             }
 
@@ -79,4 +78,10 @@ public class EditTotals extends Activity {
             }
         });
     }
+
+    public void submitNewAmount(View v){
+        final String category = spinner.getSelectedItem().toString();
+        totRef.update(category, df.format(Double.parseDouble(amountAllocate.getText().toString())));
+    }
 }
+

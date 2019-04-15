@@ -188,4 +188,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Overview.class);
         startActivity(intent);
     }
+
+    public void goToEditAmounts(View view){
+        // Add Intent to open another activity (Add Expense)
+        Intent editTotals = new Intent(this, EditTotals.class);
+        startActivity(editTotals);
+    }
 }
