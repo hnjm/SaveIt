@@ -272,9 +272,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="50px"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="50px">
 
             <Button
                 android:id="@+id/btnSpent3"
@@ -283,7 +284,7 @@
                 android:layout_weight="0.4"
                 android:background="@color/blue"
                 android:clickable="false"
-                android:text="Total"
+                android:text="$ Total"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -310,7 +311,7 @@
                 android:layout_weight="0.4"
                 android:background="@color/pink"
                 android:clickable="false"
-                android:text="Spent"
+                android:text="$ Spent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -341,7 +342,7 @@
                 android:layout_weight="0.40"
                 android:background="@color/colorPrimaryLight"
                 android:clickable="false"
-                android:text="Remaining"
+                android:text="$ Remaining"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
@@ -364,18 +365,34 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/AllocateCategory"
-        android:layout_width="173dp"
+        android:id="@+id/btnEditAmounts"
+        android:layout_width="148dp"
         android:layout_height="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginBottom="76dp"
+        android:background="@color/blue"
+        android:text="Edit Amounts"
+        android:onClick="goToEditAmounts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <Button
+        android:id="@+id/btnEditTimeFrame"
+        android:layout_width="161dp"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/blue"
-        android:text="Allocate Amounts"
+        android:layout_marginBottom="76dp"
+        android:background="@color/lightBlue"
+        android:text="Edit Timeframe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toEndOf="@+id/btnEditAmounts"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
 
 </android.support.constraint.ConstraintLayout>

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] category = {"Clothing", "Food", "Housing", "Medical", "Transport", "Other"};   // setting categories
     private List<PieEntry> pieVal = new ArrayList<>();  // to store data pie entries
     private PieDataSet pieDataSet;  // to send data to the pie chart
-    private int[] color = {Color.RED, Color.BLUE, Color.DKGRAY, Color.LTGRAY, Color.MAGENTA, Color.BLACK, Color.CYAN};     // making an int[] for the colors
+    private int[] color = {Color.RED, Color.BLUE, Color.GREEN, Color.LTGRAY, Color.MAGENTA, Color.BLACK};     // making an int[] for the colors
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference clothRef = db.collection("Clothing");
     private CollectionReference foodRef = db.collection("Food");

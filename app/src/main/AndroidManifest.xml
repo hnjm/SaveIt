@@ -11,21 +11,29 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
+
                 <!-- Starter Activity -->
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddExpense" android:label="Add Expense" android:theme="@style/AppTheme">
-
-        </activity>
-
-        <activity android:name=".SpendingDetail" android:label="Spending Detail" android:theme="@style/AppTheme">
-        </activity>
-
-        <activity android:name=".Overview" android:label="Overview" android:theme="@style/AppTheme">
-        </activity>
+        <activity
+            android:name=".AddExpense"
+            android:label="Add Expense"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".SpendingDetail"
+            android:label="Spending Detail"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".Overview"
+            android:label="Overview"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".EditTotals"
+            android:label="EditTotals"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

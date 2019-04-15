@@ -39,9 +39,6 @@ public class AddExpense extends Activity {
     private static final String KEY_COST = "Amount";
     private static final String KEY_DATE = "Date";
 
-    // Remove
-    private static final String KEY_CATEGORY = "Category";
-
     // Get current date to put into database
     static Calendar calendar = Calendar.getInstance();
     // Format = Day, Month, Year, hours:minutes seconds

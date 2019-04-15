@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SaveIt</string>
-    <string name="change_budget">Change Budget</string>
     <string name="add_expense">Add Expense</string>
     <string name="overview">Overview</string>
     <string name="spending_detail">Spending Detail</string>
@@ -15,4 +14,6 @@
         <item>Other</item>
 
     </string-array>
+    <string name="change_budget">Edit Entry</string>
+    <string name="title_activity_edit_entry">EditEntry</string>
 </resources>

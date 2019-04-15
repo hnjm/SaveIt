@@ -1,7 +1,9 @@
 package saveit.com.saveit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -335,6 +337,12 @@ public class Overview extends Activity {
                         });
                     }
                 });
+    }
+
+    public void goToEditAmounts(View view){
+        // Add Intent to open another activity (Add Expense)
+        Intent editTotals = new Intent(this, EditTotals.class);
+        startActivity(editTotals);
     }
 
 }
